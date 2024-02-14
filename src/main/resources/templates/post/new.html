@@ -1,0 +1,66 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Create New Post</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create New Post</h1>-->
+<!--<form th:action="@{/post/create}" method="post">-->
+<!--    <label for="title">Title:</label><br>-->
+<!--    <input type="text" id="title" name="title"><br>-->
+<!--    <label for="content">Content:</label><br>-->
+<!--    <textarea id="content" name="content"></textarea><br><br>-->
+<!--    <button type="submit">Submit</button>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+</head>
+<body>
+<h1>Create New Post</h1>
+<form id="postForm">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content"></textarea><br><br>
+    <button type="button" onclick="submitPost()">Submit</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function submitPost() {
+    var title = $('#title').val();
+    var content = $('#content').val();
+
+    var postData = {
+        title: title,
+        content: content
+    };
+
+    $.ajax({
+        url: '/post/create',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(postData),
+        success: function(response) {
+            console.log('Post created successfully:', response);
+            // 추가적인 작업을 수행할 수 있습니다.
+        },
+        error: function(xhr, status, error) {
+            console.error('Error creating post:', error);
+            // 오류 처리를 수행할 수 있습니다.
+        }
+    });
+}
+</script>
+</body>
+</html>

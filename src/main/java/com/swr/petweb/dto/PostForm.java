@@ -1,9 +1,8 @@
 package com.swr.petweb.dto;
 
-import com.swr.petweb.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
-
+import com.swr.petweb.entity.Post;
 
 @AllArgsConstructor
 @ToString
